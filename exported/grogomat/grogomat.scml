@@ -1,0 +1,98 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<spriter_data scml_version="1.0" generator="BrashMonkey Spriter" generator_version="r11">
+    <folder id="0">
+        <file id="0" name="grogomat.png" width="512" height="512" pivot_x="0.444581" pivot_y="0.384359"/>
+    </folder>
+    <entity id="0" name="grogomat">
+        <animation id="0" name="idle" length="1000" interval="100">
+            <mainline>
+                <key id="0">
+                    <object_ref id="0" timeline="0" key="0" z_index="0"/>
+                </key>
+            </mainline>
+            <timeline id="0" name="grogomat">
+                <key id="0" spin="0">
+                    <object folder="0" file="0" angle="0"/>
+                </key>
+            </timeline>
+        </animation>
+        <animation id="1" name="shake" length="1000" interval="100">
+            <mainline>
+                <key id="0">
+                    <object_ref id="0" timeline="0" key="0" z_index="0"/>
+                </key>
+                <key id="1" time="142">
+                    <object_ref id="0" timeline="0" key="1" z_index="0"/>
+                </key>
+                <key id="2" time="285">
+                    <object_ref id="0" timeline="0" key="1" z_index="0"/>
+                </key>
+                <key id="3" time="427">
+                    <object_ref id="0" timeline="0" key="1" z_index="0"/>
+                </key>
+                <key id="4" time="570">
+                    <object_ref id="0" timeline="0" key="1" z_index="0"/>
+                </key>
+                <key id="5" time="714">
+                    <object_ref id="0" timeline="0" key="1" z_index="0"/>
+                </key>
+                <key id="6" time="856">
+                    <object_ref id="0" timeline="0" key="1" z_index="0"/>
+                </key>
+                <key id="7" time="1000">
+                    <object_ref id="0" timeline="0" key="1" z_index="0"/>
+                </key>
+            </mainline>
+            <timeline id="0" name="grogomat">
+                <key id="0" spin="0">
+                    <object folder="0" file="0" angle="0"/>
+                </key>
+                <key id="1" time="142" spin="0">
+                    <object folder="0" file="0" angle="0" scale_y="0.899565"/>
+                </key>
+            </timeline>
+        </animation>
+        <animation id="2" name="burnt" length="1000" interval="100">
+            <mainline>
+                <key id="0">
+                    <object_ref id="0" timeline="0" key="0" z_index="0"/>
+                </key>
+            </mainline>
+            <timeline id="0" name="grogomat_001">
+                <key id="0" spin="0">
+                    <object folder="0" file="0" angle="0"/>
+                </key>
+            </timeline>
+        </animation>
+        <animation id="3" name="place" length="1000" interval="100">
+            <mainline>
+                <key id="0">
+                    <object_ref id="0" timeline="0" key="0" z_index="0"/>
+                </key>
+            </mainline>
+            <timeline id="0" name="grogomat_002">
+                <key id="0" spin="0">
+                    <object folder="0" file="0" angle="0"/>
+                </key>
+            </timeline>
+        </animation>
+        <animation id="4" name="hammered" length="1000" interval="100">
+            <mainline>
+                <key id="0">
+                    <object_ref id="0" timeline="0" key="0" z_index="0"/>
+                </key>
+                <key id="1" time="1000">
+                    <object_ref id="0" timeline="0" key="1" z_index="0"/>
+                </key>
+            </mainline>
+            <timeline id="0" name="grogomat_000">
+                <key id="0" spin="-1">
+                    <object folder="0" file="0" angle="0.722937"/>
+                </key>
+                <key id="1" time="1000">
+                    <object folder="0" file="0" angle="358.281642" scale_x="1" scale_y="1"/>
+                </key>
+            </timeline>
+        </animation>
+    </entity>
+</spriter_data>

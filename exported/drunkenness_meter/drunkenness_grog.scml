@@ -1,0 +1,96 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<spriter_data scml_version="1.0" generator="BrashMonkey Spriter" generator_version="r11">
+    <folder id="0" name="bg">
+        <file id="0" name="bg/bg-0.png" width="64" height="64" pivot_x="-0.858594" pivot_y="1.88242"/>
+    </folder>
+    <folder id="1" name="heart">
+        <file id="0" name="heart/heart-0.png" width="52" height="52" pivot_x="0.482202" pivot_y="0.573567"/>
+        <file id="1" name="heart/heart-1.png" width="52" height="48" pivot_x="0.496625" pivot_y="0.576052"/>
+        <file id="2" name="heart/heart-2.png" width="48" height="40" pivot_x="0.483844" pivot_y="0.546262"/>
+        <file id="3" name="heart/heart-3.png" width="40" height="36" pivot_x="0.499987" pivot_y="0.599319"/>
+    </folder>
+    <folder id="2" name="frame_circle">
+        <file id="0" name="frame_circle/frame_circle-0.png" width="80" height="84" pivot_x="0.5" pivot_y="0.5"/>
+        <file id="1" name="frame_circle/frame_circle-1.png" width="80" height="84" pivot_x="0.5" pivot_y="0.5"/>
+    </folder>
+    <folder id="3" name="bg2">
+        <file id="0" name="bg2/bg2-0.png" width="64" height="64" pivot_x="-0.8625" pivot_y="1.88203"/>
+    </folder>
+    <folder id="4" name="health_level">
+        <file id="0" name="health_level/health_level-0.png" width="68" height="68" pivot_x="0.500728" pivot_y="0.499272"/>
+        <file id="1" name="health_level/health_level-1.png" width="68" height="64" pivot_x="0.500728" pivot_y="0.523836"/>
+        <file id="2" name="health_level/health_level-2.png" width="68" height="60" pivot_x="0.500728" pivot_y="0.545425"/>
+        <file id="3" name="health_level/health_level-3.png" width="68" height="60" pivot_x="0.500728" pivot_y="0.565425"/>
+        <file id="4" name="health_level/health_level-4.png" width="68" height="56" pivot_x="0.500728" pivot_y="0.591527"/>
+        <file id="5" name="health_level/health_level-5.png" width="68" height="56" pivot_x="0.500728" pivot_y="0.612955"/>
+        <file id="6" name="health_level/health_level-6.png" width="68" height="52" pivot_x="0.500728" pivot_y="0.644721"/>
+        <file id="7" name="health_level/health_level-7.png" width="68" height="48" pivot_x="0.500728" pivot_y="0.681781"/>
+        <file id="8" name="health_level/health_level-8.png" width="68" height="48" pivot_x="0.500728" pivot_y="0.706781"/>
+        <file id="9" name="health_level/health_level-9.png" width="68" height="44" pivot_x="0.500728" pivot_y="0.752852"/>
+        <file id="10" name="health_level/health_level-10.png" width="68" height="44" pivot_x="0.500728" pivot_y="0.780125"/>
+        <file id="11" name="health_level/health_level-11.png" width="68" height="40" pivot_x="0.500728" pivot_y="0.838138"/>
+        <file id="12" name="health_level/health_level-12.png" width="68" height="36" pivot_x="0.500728" pivot_y="0.909028"/>
+        <file id="13" name="health_level/health_level-13.png" width="68" height="36" pivot_x="0.500728" pivot_y="0.942361"/>
+        <file id="14" name="health_level/health_level-14.png" width="64" height="32" pivot_x="0.500773" pivot_y="1.03516"/>
+        <file id="15" name="health_level/health_level-15.png" width="64" height="32" pivot_x="0.500773" pivot_y="1.07266"/>
+        <file id="16" name="health_level/health_level-16.png" width="60" height="28" pivot_x="0.500825" pivot_y="1.19732"/>
+        <file id="17" name="health_level/health_level-17.png" width="60" height="24" pivot_x="0.501242" pivot_y="1.36354"/>
+        <file id="18" name="health_level/health_level-18.png" width="56" height="24" pivot_x="0.500884" pivot_y="1.41354"/>
+        <file id="19" name="health_level/health_level-19.png" width="52" height="20" pivot_x="0.501433" pivot_y="1.65625"/>
+        <file id="20" name="health_level/health_level-20.png" width="44" height="20" pivot_x="0.501125" pivot_y="1.71625"/>
+        <file id="21" name="health_level/health_level-21.png" width="40" height="16" pivot_x="0.501237" pivot_y="2.09531"/>
+    </folder>
+    <entity id="0" name="drunkenness_grog">
+        <animation id="0" name="grog_edge_anim" length="100" interval="100">
+            <mainline>
+                <key id="0">
+                    <object_ref id="0" timeline="0" key="0" z_index="0"/>
+                </key>
+                <key id="1" time="25">
+                    <object_ref id="0" timeline="0" key="1" z_index="0"/>
+                </key>
+                <key id="2" time="50">
+                    <object_ref id="0" timeline="0" key="2" z_index="0"/>
+                </key>
+                <key id="3" time="76">
+                    <object_ref id="0" timeline="0" key="3" z_index="0"/>
+                </key>
+                <key id="4" time="100">
+                    <object_ref id="0" timeline="0" key="4" z_index="0"/>
+                </key>
+            </mainline>
+            <timeline id="0" name="frame_circle">
+                <key id="0" spin="0">
+                    <object folder="2" file="0" x="0.50048" y="-0.426536" angle="0"/>
+                </key>
+                <key id="1" time="25" spin="0">
+                    <object folder="2" file="0" x="0.50048" y="-0.426536" angle="0"/>
+                </key>
+                <key id="2" time="50" spin="0">
+                    <object folder="2" file="0" x="0.50048" y="-0.426536" angle="0"/>
+                </key>
+                <key id="3" time="76" spin="0">
+                    <object folder="2" file="0" x="0.50048" y="-0.426536" angle="0"/>
+                </key>
+                <key id="4" time="100" spin="0">
+                    <object folder="2" file="0" x="0.50048" y="-0.426536" angle="0"/>
+                </key>
+            </timeline>
+        </animation>
+        <animation id="1" name="transform" length="100" interval="100">
+            <mainline>
+                <key id="0">
+                    <object_ref id="0" timeline="0" key="0" z_index="0"/>
+                </key>
+                <key id="1" time="100">
+                    <object_ref id="0" timeline="0" key="0" z_index="0"/>
+                </key>
+            </mainline>
+            <timeline id="0" name="frame_circle-1">
+                <key id="0" spin="0">
+                    <object folder="2" file="1"/>
+                </key>
+            </timeline>
+        </animation>
+    </entity>
+</spriter_data>

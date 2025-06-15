@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<spriter_data scml_version="1.0" generator="BrashMonkey Spriter" generator_version="b5">
+	<folder id="0" name="bumper_body">
+		<file id="0" name="bumper_body/bumper_body-0.png" width="538" height="281" pivot_x="0.488801" pivot_y="0.00925269" />
+		<file id="1" name="bumper_body/bumper_body-1.png" width="538" height="281" pivot_x="0.488801" pivot_y="0.00925269" />
+		<file id="2" name="bumper_body/bumper_body-2.png" width="517" height="256" pivot_x="0.487814" pivot_y="-0.0869922" />
+		<file id="3" name="bumper_body/bumper_body-3.png" width="286" height="246" pivot_x="0.583654" pivot_y="0.339126" />
+	</folder>
+	<folder id="1" name="debris_shell">
+		<file id="0" name="debris_shell/debris_shell-0.png" width="56" height="60" pivot_x="0.561161" pivot_y="0.0725" />
+		<file id="1" name="debris_shell/debris_shell-1.png" width="51" height="68" pivot_x="0.64951" pivot_y="0.144853" />
+		<file id="2" name="debris_shell/debris_shell-2.png" width="49" height="51" pivot_x="0.360204" pivot_y="0.00343136" />
+		<file id="3" name="debris_shell/debris_shell-3.png" width="50" height="45" pivot_x="0.4865" pivot_y="-0.0372222" />
+	</folder>
+	<entity id="0" name="boat_bumper">
+		<animation id="0" name="ta" length="67">
+			<mainline>
+				<key id="0" time="0">
+					<object_ref id="0" name="bumper_body" abs_x="0" abs_y="0" abs_pivot_x="0.488801" abs_pivot_y="0.00925269" abs_angle="0" abs_scale_x="1" abs_scale_y="1" abs_a="1" timeline="0" key="0" z_index="1" />
+				</key>
+				<key id="1" time="34">
+					<object_ref id="0" name="bumper_body" abs_x="0" abs_y="0" abs_pivot_x="0.488801" abs_pivot_y="0.00925269" abs_angle="0" abs_scale_x="1" abs_scale_y="1" abs_a="1" timeline="0" key="1" z_index="1" />
+				</key>
+				<key id="2" time="67">
+					<object_ref id="0" name="bumper_body" abs_x="0" abs_y="0" abs_pivot_x="0.488801" abs_pivot_y="0.00925269" abs_angle="0" abs_scale_x="1" abs_scale_y="1" abs_a="1" timeline="0" key="2" z_index="1" />
+				</key>
+			</mainline>
+			<timeline id="0" name="bumper_body">
+				<key id="0" time="0" spin="1">
+					<object folder="0" file="0" x="-11.75" y="-155.85" scale_x="1" scale_y="1" angle="0" />
+				</key>
+				<key id="1" time="34" spin="1">
+					<object folder="0" file="1" x="-11.75" y="-155.85" scale_x="1" scale_y="1" angle="0" />
+				</key>
+				<key id="2" time="67" spin="1">
+					<object folder="0" file="1" x="-11.75" y="-155.85" scale_x="1" scale_y="1" angle="0" />
+				</key>
+			</timeline>
+		</animation>
+	</entity>
+</spriter_data>

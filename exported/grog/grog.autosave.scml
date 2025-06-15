@@ -1,0 +1,92 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<spriter_data scml_version="1.0" generator="BrashMonkey Spriter" generator_version="r11">
+    <folder id="0">
+        <file id="0" name="grog.png" width="180" height="180" pivot_x="0.483077" pivot_y="0.175385"/>
+    </folder>
+    <entity id="0" name="grog">
+        <animation id="0" name="shake" length="2000" interval="100">
+            <mainline>
+                <key id="0">
+                    <object_ref id="0" timeline="0" key="0" z_index="0"/>
+                </key>
+                <key id="1" time="100">
+                    <object_ref id="0" timeline="0" key="1" z_index="0"/>
+                </key>
+                <key id="2" time="200">
+                    <object_ref id="0" timeline="0" key="2" z_index="0"/>
+                </key>
+                <key id="3" time="300">
+                    <object_ref id="0" timeline="0" key="3" z_index="0"/>
+                </key>
+                <key id="4" time="400">
+                    <object_ref id="0" timeline="0" key="4" z_index="0"/>
+                </key>
+                <key id="5" time="500">
+                    <object_ref id="0" timeline="0" key="5" z_index="0"/>
+                </key>
+                <key id="6" time="600">
+                    <object_ref id="0" timeline="0" key="6" z_index="0"/>
+                </key>
+                <key id="7" time="700">
+                    <object_ref id="0" timeline="0" key="7" z_index="0"/>
+                </key>
+                <key id="8" time="800">
+                    <object_ref id="0" timeline="0" key="8" z_index="0"/>
+                </key>
+                <key id="9" time="1599">
+                    <object_ref id="0" timeline="0" key="9" z_index="0"/>
+                </key>
+                <key id="10" time="2000">
+                    <object_ref id="0" timeline="0" key="10" z_index="0"/>
+                </key>
+            </mainline>
+            <timeline id="0" name="grog_000">
+                <key id="0" spin="-1">
+                    <object folder="0" file="0"/>
+                </key>
+                <key id="1" time="100">
+                    <object folder="0" file="0" angle="357.10873" scale_x="1"/>
+                </key>
+                <key id="2" time="200" spin="-1">
+                    <object folder="0" file="0" angle="5.147885"/>
+                </key>
+                <key id="3" time="300">
+                    <object folder="0" file="0" angle="357.273689"/>
+                </key>
+                <key id="4" time="400" spin="-1">
+                    <object folder="0" file="0" angle="0.98776" scale_x="1" scale_y="1"/>
+                </key>
+                <key id="5" time="500">
+                    <object folder="0" file="0" angle="356.666149" scale_x="1" scale_y="1"/>
+                </key>
+                <key id="6" time="600" spin="-1">
+                    <object folder="0" file="0" angle="1.992094"/>
+                </key>
+                <key id="7" time="700">
+                    <object folder="0" file="0" angle="357.754257"/>
+                </key>
+                <key id="8" time="800" spin="-1">
+                    <object folder="0" file="0" angle="3.423871" scale_y="1"/>
+                </key>
+                <key id="9" time="1599" spin="-1">
+                    <object folder="0" file="0" angle="1.013979"/>
+                </key>
+                <key id="10" time="2000" spin="0">
+                    <object folder="0" file="0"/>
+                </key>
+            </timeline>
+        </animation>
+        <animation id="1" name="Idle" length="1000" interval="100">
+            <mainline>
+                <key id="0">
+                    <object_ref id="0" timeline="0" key="0" z_index="0"/>
+                </key>
+            </mainline>
+            <timeline id="0" name="grog">
+                <key id="0" spin="0">
+                    <object folder="0" file="0" pivot_x="0.478273" pivot_y="0.437576" angle="0" scale_x="0.8" scale_y="0.8"/>
+                </key>
+            </timeline>
+        </animation>
+    </entity>
+</spriter_data>
