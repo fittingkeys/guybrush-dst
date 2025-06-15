@@ -8,7 +8,6 @@ this seems to be due to ChangeToGuybrush/Gulet, which doesn't swap correctly on 
 - boat flooring from pinecone wood in the style of bumper cars (indestructible by cookiecutter somehow possible or crash?)
 - Grog gets better when spoiled! (but only if the food values can be displayed correctly)
 - driftwood chest (more slots like upgraded chest, but items get soaked)
-- a lantern with a walking cane (lategame item)
 - at line 54 the purple hud behind the grog needs to be moved down slightly
 - Gulet form can carry sculptures quickly like Mighty Wolfgang
 - modmain and grogballs have the food values

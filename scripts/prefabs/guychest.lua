@@ -26,11 +26,13 @@ local function UpdateKeyholeSymbol(inst)
         return item.prefab == "goldnugget"
     end)
     num_gold = #items
-    local symbol = "keyhole-1"
-    if num_gold >= 5 then
-        symbol = "keyhole-3"
-    elseif num_gold >= 2 then
-        symbol = "keyhole-2"
+    local symbol = "keyhole"
+    if num_gold >= 10 then
+        symbol = "keyhole3"
+    elseif num_gold >= 5 then
+        symbol = "keyhole2"
+    elseif num_gold < 5 then
+        symbol = "keyhole1"
     end
     inst.AnimState:OverrideSymbol("keyhole", "guychest", symbol)
 end
@@ -104,7 +106,7 @@ local function fn()
     inst.entity:AddMiniMapEntity()
     inst.entity:AddNetwork()
 
-    MakeObstaclePhysics(inst, 0.7)
+    MakeObstaclePhysics(inst, 0.4)
 
     inst.MiniMapEntity:SetIcon("chest.png")
 
@@ -114,7 +116,6 @@ local function fn()
     inst.AnimState:SetBank("guychest")
     inst.AnimState:SetBuild("guychest")
     inst.AnimState:PlayAnimation("closed")
-    inst.AnimState:OverrideSymbol("keyhole", "guychest", "keyhole-1") -- TEST: Keyhole-1 sichtbar?
 
     MakeSnowCoveredPristine(inst)
 
@@ -135,12 +136,29 @@ local function fn()
     inst.components.container.skipclosesnd = true
     inst.components.container.skipopensnd = true
 
-    -- Keyhole-Update bei Itemänderungen
-    local function on_item_change(inst, data)
-        UpdateKeyholeSymbol(inst)
-    end
-    inst:ListenForEvent("itemget", on_item_change)
-    inst:ListenForEvent("itemlose", on_item_change)
+    -- Keyhole-Update bei Itemänderungen (onput/ontake) - User requested to test without this block
+    -- inst:DoTaskInTime(0, function(task_inst)
+    --     if task_inst and task_inst.components and task_inst.components.container then
+    --         if task_inst.components.container.SetOnPutItemFn then
+    --             task_inst.components.container:SetOnPutItemFn(function(container_owner_inst, item_put, slot)
+    --                 UpdateKeyholeSymbol(container_owner_inst)
+    --             end)
+    --         else
+    --             print("GUYCHEST_ERROR: SetOnPutItemFn is nil on container component for "..(task_inst.GUID or "UNKNOWN_GUID"))
+    --         end
+    -- 
+    --         if task_inst.components.container.SetOnItemTakenFn then
+    --             task_inst.components.container:SetOnItemTakenFn(function(container_owner_inst, item_taken, slot)
+    --                 UpdateKeyholeSymbol(container_owner_inst)
+    --             end)
+    --         else
+    --             print("GUYCHEST_ERROR: SetOnItemTakenFn is nil on container component for "..(task_inst.GUID or "UNKNOWN_GUID"))
+    --         end
+    --     else
+    --         local guid = (task_inst and task_inst.GUID) or "UNKNOWN_GUID_OR_NIL_TASK_INST"
+    --         print("GUYCHEST_ERROR: Container component is nil for "..guid.." when trying to set item change listeners via DoTaskInTime.")
+    --     end
+    -- end)
     -- Initiales Setzen beim Spawn
     inst:DoTaskInTime(0, function() UpdateKeyholeSymbol(inst) end)
 
