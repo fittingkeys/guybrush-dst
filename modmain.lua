@@ -317,7 +317,6 @@ STRINGS.CHARACTERS.GENERIC.DESCRIBE.GUYSWORD = "Arrr, that's sharp!"
 local gummihuhn = AddGuybrushRecipe(
     "gummihuhn",
     {
-        Ingredient("spear",         1),
         Ingredient("torch",         1),
         Ingredient("gummi", 1),
     },
@@ -784,14 +783,6 @@ MakeGuletFoodOverride("monsterlasagna", { health = 0, hunger = 55, sanity = 0 })
 
 
 local utils = require("utils")
-
-local ImproveTree = require("trees")
-
--- Add resources from trees
-local trees = {"palmconetree", "palmconetree_short", "palmconetree_normal", "palmconetree_tall"}
-for i,v in pairs(trees) do
-    AddPrefabPostInit(v, utils.Bind(utils.RunFunctionServerOnly, ImproveTree))
-end
 
 RegisterInventoryItemAtlas("images/inventoryimages/gummi.xml", "gummi.tex")
 STRINGS.NAMES.GUMMI = "Rubber"
@@ -1279,6 +1270,18 @@ AddPlayerPostInit(function(inst)
     if _G.TheWorld.ismastersim then
         inst:ListenForEvent("equipped", OnEquip)
     end
+end)
+
+--------------------------------------------------------------------------
+-- (11) Loot from burnt palm trees
+--------------------------------------------------------------------------
+AddPrefabPostInit("world", function(inst)
+	if not _G.TheWorld.ismastersim then
+		return inst
+	end
+	if _G.LootTables.palmconetree_burnt then
+		table.insert(_G.LootTables.palmconetree_burnt, { "gummi", 1 })
+	end
 end)
 
 --===================================================================
