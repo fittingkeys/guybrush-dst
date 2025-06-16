@@ -1,4 +1,8 @@
-✅ Feature List
+GUYBRUSH THREEPWOOD (DST)
+
+Don't Starve Together character mod featuring custom arts, items, sounds, and mechanics.
+
+✅ Upcoming Feature List
 
 1) Drunk Beefalo ("Grogalo")
 Introducing a new Beefalo type as one of five possible taming outcomes. The Grogalo is tamed exclusively by repeatedly feeding it Grog. 
