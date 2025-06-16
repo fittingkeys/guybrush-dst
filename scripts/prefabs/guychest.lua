@@ -35,9 +35,9 @@ local function UpdateKeyholeSymbol(inst)
     local symbol = "keyhole" -- Default symbol (e.g., for 0 gold)
     if total_gold_amount >= 10 then
         symbol = "keyhole3"
-    elseif total_gold_amount >= 5 then
+    elseif total_gold_amount >= 3 then
         symbol = "keyhole2"
-    elseif total_gold_amount < 5 then
+    elseif total_gold_amount < 3 then
         symbol = "keyhole1"
     end
     inst.AnimState:OverrideSymbol("keyhole", "guychest", symbol)
@@ -60,6 +60,17 @@ local function onclose(inst)
     end
 end 
 
+local function onhit(inst, worker)
+    if not inst:HasTag("burnt") then
+        if inst.components.container ~= nil then
+            inst.components.container:DropEverything()
+            inst.components.container:Close()
+        end
+        inst.AnimState:PlayAnimation("hit")
+        inst.AnimState:PushAnimation("closed", false)
+    end
+end
+
 local function onhammered(inst, worker)
     if inst.components.burnable ~= nil and inst.components.burnable:IsBurning() then
         inst.components.burnable:Extinguish()
@@ -74,21 +85,39 @@ local function onhammered(inst, worker)
     inst:Remove()
 end
 
-local function onhit(inst, worker)
-    if not inst:HasTag("burnt") then
-        if inst.components.container ~= nil then
-            inst.components.container:DropEverything()
-            inst.components.container:Close()
-        end
-        inst.AnimState:PlayAnimation("hit")
-        inst.AnimState:PushAnimation("closed", false)
-    end
-end
-
 local function onbuilt(inst)
     inst.AnimState:PlayAnimation("rebuild")
     inst.AnimState:PushAnimation("closed", false)
     inst.SoundEmitter:PlaySound(inst.sounds.built)
+end
+
+local function OnDayChange(inst)
+    -- This logic should only run on the server where the container component is fully active.
+    if not TheWorld.ismastersim then
+        return
+    end
+
+    if inst.components.container then
+        -- Try to consume one guycoin. ConsumeByName returns true on success, false on failure.
+        local hadCoin = inst.components.container:ConsumeByName("guycoin", 1)
+
+        -- If no coin was consumed, check if the chest has other items before spitting them out.
+        if not hadCoin then
+            -- HACK: Using .slots directly instead of GetItemCount() to avoid a persistent crash
+            -- where the container component exists but its methods are not callable.
+            if inst.components.container and inst.components.container.slots and #inst.components.container.slots > 0 then
+                onhit(inst, nil) -- Pass nil for the worker as there is no worker.
+                inst.SoundEmitter:PlaySound("dontstarve/common/chest_bored") -- A sound to indicate dissatisfaction
+            end
+        end
+    end
+end
+
+local function OnIsDay(inst, isday)
+    if isday then
+        -- This will fire when the state changes to day.
+        OnDayChange(inst)
+    end
 end
 
 local function onsave(inst, data)
@@ -157,6 +186,8 @@ local function fn()
     inst:ListenForEvent("onbuilt", onbuilt)
     inst:ListenForEvent("itemget", function() UpdateKeyholeSymbol(inst) end)
     inst:ListenForEvent("itemlose", function() UpdateKeyholeSymbol(inst) end)
+    inst:WatchWorldState("isday", OnIsDay)
+
     MakeSnowCovered(inst)   
 
     MakeSmallBurnable(inst, nil, nil, true)
