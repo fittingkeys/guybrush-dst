@@ -14,10 +14,7 @@ this seems to be due to ChangeToGuybrush/Gulet, which doesn't swap correctly on 
 - somehow more negative sanity boost
 - guyhat should give more speed on water like the sleek hat. external mod is too complicated
 - bone X on ground should give an item that I can then use for some other crafting
-- guychest must be fed with guycoins. if >=2 guycoins in chest, then it smiles, otherwise a normal monkey.
-- guychest coins - 1 coin per day (otherwise it spits out the items)
-- the collision object of the guychest must be made smaller
-- gulet gives tokens twice as fast
+- guychest coins -1 coin per day (otherwise it spits out the items)
 - build in some incentive for guybrush to drink
 - beefalo should be fed grog and thus run faster for 5min
 - beefalo becomes addicted to grog and can be tamed very quickly with it.
