@@ -6,7 +6,6 @@ Bugs:
 - when loading the server, the armor_pirate is not on the character. it is only displayed after re-equipping.
 this seems to be due to ChangeToGuybrush/Gulet, which doesn't swap correctly on onload/spawn
 - boat flooring from pinecone wood in the style of bumper cars (indestructible by cookiecutter somehow possible or crash?)
-- Grog gets better when spoiled! (but only if the food values can be displayed correctly)
 - at line 54 the purple hud behind the grog needs to be moved down slightly
 - Gulet form can carry sculptures quickly like Mighty Wolfgang
 - modmain and grogballs have the food values
@@ -14,7 +13,6 @@ this seems to be due to ChangeToGuybrush/Gulet, which doesn't swap correctly on 
 - somehow more negative sanity boost
 - guyhat should give more speed on water like the sleek hat. external mod is too complicated
 - bone X on ground should give an item that I can then use for some other crafting
-- guychest coins -1 coin per day (otherwise it spits out the items)
 - build in some incentive for guybrush to drink
 - beefalo should be fed grog and thus run faster for 5min
 - beefalo becomes addicted to grog and can be tamed very quickly with it.

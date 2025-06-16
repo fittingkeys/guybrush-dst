@@ -44,15 +44,16 @@ end
 -- Return from ghost state
 --------------------------------------------------------------------------
 local function onbecamehuman(inst)
-    -- If Drunkenness already has "transformed = true", abort
     if inst.components.drunkenness and inst.components.drunkenness.transformed then
-        print("[DEBUG] onbecamehuman() - Aborted, Drunkenness.transformed = true.")
+        print("[DEBUG] onbecamehuman() - Drunkenness.transformed is true. Assuming drunkenness component handles Gulet visuals.")
+        if inst.isGulet then -- Ensure Gulet visuals if state implies it
+            ForceGuletVisuals(inst)
+        end
         return
     end
-
-    print("[DEBUG] onbecamehuman() called: Setting build to guybrush.")
-    inst.AnimState:SetBuild("guybrush")
-    inst.isGulet = false
+    print("[DEBUG] onbecamehuman() called: Not transformed by drunkenness, becoming Guybrush.")
+    ForceGuybrushVisuals(inst) -- This sets build and refreshes armor
+    inst.isGulet = false -- Ensure state consistency
 end
 
 --------------------------------------------------------------------------
@@ -120,16 +121,34 @@ local function GuletTestFood (_, f) return f:HasTag("guletfood")   end
 --------------------------------------------------------------------------
 -- Additional helpers for setting graphics
 --------------------------------------------------------------------------
+local function RefreshEquippedBodyArmorVisuals(inst)
+    if inst.components.inventory then
+        local body_item = inst.components.inventory:GetEquippedItem(EQUIPSLOTS.BODY)
+        if body_item and body_item.components.equippable then
+            -- Simulate re-equipping visuals
+            if body_item.components.equippable.onunequipfn then
+                body_item.components.equippable.onunequipfn(body_item, inst)
+            end
+            if body_item.components.equippable.onequipfn then
+                body_item.components.equippable.onequipfn(body_item, inst)
+            end
+            print("[DEBUG] Refreshed body armor visuals for build:", inst.AnimState:GetBuild())
+        end
+    end
+end
+
 local function ForceGuletVisuals(inst)
     inst.AnimState:SetBuild("gulet")
     inst.AnimState:SetBank("wilson")
     print("[DEBUG] ForceGuletVisuals() - Build/Bank set: gulet/wilson.")
+    RefreshEquippedBodyArmorVisuals(inst)
 end
 
 local function ForceGuybrushVisuals(inst)
     inst.AnimState:SetBuild("guybrush")
     inst.AnimState:SetBank("wilson")
     print("[DEBUG] ForceGuybrushVisuals() - Build/Bank set: guybrush/wilson.")
+    RefreshEquippedBodyArmorVisuals(inst)
 end
 
 --------------------------------------------------------------------------
@@ -289,6 +308,8 @@ local function master_postinit(inst)
             data.drunkenness = inst.components.drunkenness:OnSave()
             print("[DEBUG] OnSave() - Saving Drunkenness:", data.drunkenness.current)
         end
+        data.isGulet = inst.isGulet
+        print("[DEBUG] OnSave() - Saving isGulet:", inst.isGulet)
     end
 
     local old_OnLoad = inst.OnLoad
@@ -296,10 +317,30 @@ local function master_postinit(inst)
         if old_OnLoad then
             old_OnLoad(inst, data)
         end
-        if data and data.drunkenness and inst.components.drunkenness then
-            print("[DEBUG] OnLoad() - Loading Drunkenness:", data.drunkenness.current)
-            inst.components.drunkenness:OnLoad(data.drunkenness)
+        if data then
+            if data.drunkenness and inst.components.drunkenness then
+                print("[DEBUG] OnLoad() - Loading Drunkenness:", data.drunkenness.current)
+                inst.components.drunkenness:OnLoad(data.drunkenness)
+            end
+            if data.isGulet ~= nil then
+                inst.isGulet = data.isGulet
+                print("[DEBUG] OnLoad() - Loaded isGulet:", inst.isGulet)
+            else
+                inst.isGulet = false -- Default if not saved from a previous session with this logic
+                print("[DEBUG] OnLoad() - isGulet not found in save data, defaulting to false.")
+            end
+        else
+            inst.isGulet = false -- Default if no data (e.g. new character)
+            print("[DEBUG] OnLoad() - No save data, defaulting isGulet to false.")
         end
+
+        -- Ensure correct visuals after all loading, based on the definitive isGulet state
+        if inst.isGulet then
+            ForceGuletVisuals(inst)
+        else
+            ForceGuybrushVisuals(inst)
+        end
+        print("[DEBUG] OnLoad() in guybrush.lua finished. Ensured visuals are synced based on isGulet.")
     end
 
     ----------------------------------------------------------------------
