@@ -21,17 +21,23 @@ local SOUNDS = {
 
 local function UpdateKeyholeSymbol(inst)
     if not inst or not inst.components or not inst.components.container then return end
-    local num_gold = 0
+    local total_gold_amount = 0
     local items = inst.components.container:FindItems(function(item)
         return item.prefab == "goldnugget"
     end)
-    num_gold = #items
-    local symbol = "keyhole"
-    if num_gold >= 10 then
+
+    for _, item_stack in ipairs(items) do
+        if item_stack.components.stackable then
+            total_gold_amount = total_gold_amount + item_stack.components.stackable:StackSize()
+        end
+    end
+
+    local symbol = "keyhole" -- Default symbol (e.g., for 0 gold)
+    if total_gold_amount >= 10 then
         symbol = "keyhole3"
-    elseif num_gold >= 5 then
+    elseif total_gold_amount >= 5 then
         symbol = "keyhole2"
-    elseif num_gold < 5 then
+    elseif total_gold_amount < 5 then
         symbol = "keyhole1"
     end
     inst.AnimState:OverrideSymbol("keyhole", "guychest", symbol)
