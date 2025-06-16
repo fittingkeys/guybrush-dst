@@ -2,7 +2,7 @@ require "prefabutil"
 
 local assets =
 {
-    Asset("ANIM", "anim/guychest.zip"),
+    Asset("ANIM", "anim/guychest_atool.zip"),
 }
 
 local prefabs_regular =
@@ -23,7 +23,7 @@ local function UpdateKeyholeSymbol(inst)
     if not inst or not inst.components or not inst.components.container then return end
     local total_gold_amount = 0
     local items = inst.components.container:FindItems(function(item)
-        return item.prefab == "goldnugget"
+        return item.prefab == "guycoin"
     end)
 
     for _, item_stack in ipairs(items) do
