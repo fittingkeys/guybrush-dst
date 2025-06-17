@@ -279,7 +279,7 @@ local function master_postinit(inst)
     -- Base stats
     ----------------------------------------------------------------------
     inst.soundsname = "wilson"
-    inst.components.health:SetMaxHealth(200)
+    inst.components.health:SetMaxHealth(150)
     inst.components.hunger:SetMax(250)
     inst.components.sanity:SetMax(150)
 

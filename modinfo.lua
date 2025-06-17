@@ -1,6 +1,18 @@
 -- This information tells other players more about the mod
-name = "Guybrush Threepwood"
-description = "Mächtiger Pirat"
+name = "Guybrush Threepwood – The Mighty Pirate"
+description = [[
+🏴‍☠️ A Monkey Island tribute mod for Don't Starve Together!
+
+Join Guybrush on his drunken journey through the Constant – featuring custom items, cursed mechanics, and questionable decisions.
+
+✔ Play as Guybrush or his altered Gulet form  
+✔ New "Drunkenness" mechanic with visible HUD  
+✔ Grog-fueled abilities and side effects  
+✔ Unique pirate-themed gear, vending machines & currency  
+✔ Lots of grog. Probably too much grog.
+
+Baked with love. Drowned in Grog. Thanks, Grandma.
+]]
 author = "Dandoo"
 version = "1.0" -- This is the version of the template. Change it to your own number.
 

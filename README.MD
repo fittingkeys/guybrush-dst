@@ -30,7 +30,10 @@ Boat made of palmcone wood. Using already implemented rubber-bumpers. No target 
 7) Stronger Gulet 
 Gulet form can carry sculptures quickly like Mighty Wolfgang.
 
-8) Balancing
+8) Sanity-Debuff
+Guybrush gets a medium Sanity loss if Powder Monkeys are nearby (effect independent of their number).
+
+9) Balancing
 Custom Items need to be balanced. Help appreciated.
 
 🐞 Bug List
