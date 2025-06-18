@@ -14,22 +14,22 @@ local assets =
 }
 
 local sayings = {
-    "Ich bin der Fluch von Monkey Island – und du trägst ihn!",
-    "Dein Outfit für düstere Herrschaft!",
-    "Die Geister der Insel fliehen vor meinem Duft!",
-    "Mein Geruch fegt wie ein Sturm über die Karibik!",
-    "Warum gibt es mich eigentlich nur in Größe M?",
-    "Spürst du den Fluch? Muahahahaha!",
-    "Ich bin Stoff für Legenden!",
-    "Niemand entkommt meinem Fluch!",
-    "Ein Bündnis aus Teufel und Stoff!",
-    "Sogar LeChuck zittert vor meinem Wahnsinn!",
-    "Die Flüche der Karibik pulsieren in meinen Fasern!",
-    "Made in China - Die Arbeitslöhne auf Melee waren zu teuer.",
-    "Wally hat mir ein Angebot gemacht - ich werde Teil seiner nächsten Kollektion!",
+    "I am the curse of Monkey Island – and you are wearing it!",
+    "Your outfit for dark dominion!",   
+    "The ghosts of the island flee from my scent!",
+    "My smell sweeps across the Caribbean like a storm!",
+    "Why do I only come in size M?",
+    "Do you feel the curse? Muahahahaha!",
+    "I am the stuff of legends!",
+    "No one escapes my curse!",
+    "An alliance of devil and fabric!",
+    "Even LeChuck trembles before my madness!",
+    "The curses of the Caribbean pulse in my fibers!",
+    "Made in China - The wages on Mêlée were too expensive.",
+    "Wally made me an offer - I'll be part of his next collection!"
 }
 
-local TOKEN_SAYING = "ICH HABE MEINEN WAHNSINN IN EIN TEUFLISCHES RELIKT IN DEINEM INVENTAR VERBANNT!"
+local TOKEN_SAYING = "I have sealed my madness into a cursed relic... now hidden in your inventory!"
 
 --------------------------------------------------------------------------------
 -- HILFSFUNKTIONEN (Gegenstände droppen)
