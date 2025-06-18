@@ -14,7 +14,7 @@ Join Guybrush on his drunken journey through the Constant – featuring custom i
 Please leave some feedback!
 ]]
 author = "Dandoo"
-version = "1.2" -- This is the version of the template. Change it to your own number.
+version = "1.3" -- This is the version of the template. Change it to your own number.
 
 -- This is the URL name of the mod's thread on the forum; the part after the ? and before the first & in the url
 forumthread = ""

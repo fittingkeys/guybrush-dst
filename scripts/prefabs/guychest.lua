@@ -92,25 +92,66 @@ local function onbuilt(inst)
 end
 
 local function OnDayChange(inst)
-    -- This logic should only run on the server where the container component is fully active.
+    print("GUYCHEST: OnDayChange triggered for inst: " .. tostring(inst))
     if not TheWorld.ismastersim then
+        print("GUYCHEST: Not master sim, returning.")
         return
     end
 
     if inst.components.container then
-        -- Try to consume one guycoin. ConsumeByName returns true on success, false on failure.
-        local hadCoin = inst.components.container:ConsumeByName("guycoin", 1)
+        print("GUYCHEST: Container component found.")
+        
+        local found_a_coin = false
+        local coin_to_consume_ref = nil
 
-        -- If no coin was consumed, check if the chest has other items before spitting them out.
-        if not hadCoin then
-            -- HACK: Using .slots directly instead of GetItemCount() to avoid a persistent crash
-            -- where the container component exists but its methods are not callable.
-            if inst.components.container and inst.components.container.slots and #inst.components.container.slots > 0 then
-                onhit(inst, nil) -- Pass nil for the worker as there is no worker.
-                inst.SoundEmitter:PlaySound("dontstarve/common/chest_bored") -- A sound to indicate dissatisfaction
+        if inst.components.container.slots then
+            print("GUYCHEST: Iterating " .. #inst.components.container.slots .. " slots manually.")
+            for i, slot_item in ipairs(inst.components.container.slots) do
+                if slot_item and slot_item.prefab == "guycoin" then
+                    print("GUYCHEST: Found guycoin '" .. slot_item.prefab .. "' in slot " .. i)
+                    found_a_coin = true
+                    coin_to_consume_ref = slot_item
+                    break
+                elseif slot_item then
+                    print("GUYCHEST: Slot " .. i .. " contains '" .. slot_item.prefab .. "', not a guycoin.")
+                else
+                    print("GUYCHEST: Slot " .. i .. " is empty.")
+                end
+            end
+        else
+            print("GUYCHEST: inst.components.container.slots is nil.")
+        end
+        
+        print("GUYCHEST: Manual check: found_a_coin = " .. tostring(found_a_coin))
+
+        if found_a_coin and coin_to_consume_ref then
+            print("GUYCHEST: Coin found. Attempting to consume one.")
+            if coin_to_consume_ref.components.stackable and coin_to_consume_ref.components.stackable:StackSize() > 1 then
+                print("GUYCHEST: Consuming one from stack. Old stack size: " .. coin_to_consume_ref.components.stackable:StackSize())
+                coin_to_consume_ref.components.stackable:SetStackSize(coin_to_consume_ref.components.stackable:StackSize() - 1)
+                print("GUYCHEST: New stack size: " .. coin_to_consume_ref.components.stackable:StackSize())
+            else
+                print("GUYCHEST: Consuming entire item/stack (prefab: " .. coin_to_consume_ref.prefab .. ").")
+                inst.components.container:RemoveItem(coin_to_consume_ref, true) -- Explicitly use doseeremove = true
+                coin_to_consume_ref:Remove() -- Remove the entity from the world
+                print("GUYCHEST: Coin consumed and removed.")
+            end
+            UpdateKeyholeSymbol(inst) -- Update visual after consumption
+        else
+            print("GUYCHEST: No coins found or coin_to_consume_ref is nil. Checking for other items to spit out.")
+            if inst.components.container.slots and #inst.components.container.slots > 0 then
+                local num_slots_items = #inst.components.container.slots
+                print("GUYCHEST: Number of items in .slots: " .. num_slots_items .. ". Spitting them out.")
+                onhit(inst, nil)
+                inst.SoundEmitter:PlaySound("dontstarve/common/chest_bored")
+            else
+                print("GUYCHEST: No other items found in .slots to spit out. Doing nothing.")
             end
         end
+    else
+        print("GUYCHEST: Container component NOT found.")
     end
+    print("GUYCHEST: OnDayChange finished for inst: " .. tostring(inst))
 end
 
 local function OnIsDay(inst, isday)
