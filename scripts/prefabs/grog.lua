@@ -18,9 +18,9 @@ if not FUELTYPE.CHEMICAL then
 end
 
 -- Buff Constants
-local GROG_BUFF_DURATION = 30
+local GROG_BUFF_DURATION = 20
 local FASTWORK_MULTIPLIER = 0.5
-local MOVESPEED_MULTIPLIER = 1.4
+local MOVESPEED_MULTIPLIER = 1.6
 
 local function stop_all_tasks(eater)
     if eater._grog_task then

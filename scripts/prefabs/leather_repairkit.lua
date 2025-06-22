@@ -37,7 +37,7 @@ local function fn(Sim)
     inst.components.finiteuses:SetOnFinished(inst.Remove)
     
     inst:AddComponent("armorrepairing")
-    inst.components.armorrepairing.repair_value = TUNING.ARMOR_REPAIR_KIT_REPAIR_VALUE or 20
+    inst.components.armorrepairing.repair_value = 33 --TUNING.ARMOR_REPAIR_KIT_REPAIR_VALUE or 20
     inst.components.armorrepairing.only_tag = "leather"
     inst.components.armorrepairing.onarmorrepairs = onarmorrepairs
     

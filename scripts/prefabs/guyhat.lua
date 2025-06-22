@@ -99,9 +99,9 @@ local function MainFunction()
 	-- Our hat shall grant 100% water resistance to the wearer!
     inst.components.waterproofer:SetEffectiveness(1.0)
 
-    -- inst:AddComponent("insulator")
-    -- inst.components.insulator:SetSummer()
-    -- inst.components.insulator:SetInsulation(TUNING.INSULATION_SMALL)
+    inst:AddComponent("insulator")
+    inst.components.insulator:SetSummer()
+    inst.components.insulator:SetInsulation(TUNING.INSULATION_SMALL)
 
     MakeHauntableLaunch(inst)
 

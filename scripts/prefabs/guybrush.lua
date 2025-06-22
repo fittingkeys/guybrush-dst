@@ -30,6 +30,12 @@ local start_inv = TUNING.GAMEMODE_STARTING_ITEMS.DEFAULT.GUYBRUSH
 --------------------------------------------------------------------------
 -- Helper tags for recipes
 --------------------------------------------------------------------------
+
+-- Dummy-Funktion, um Crash zu verhindern
+local function RefreshEquippedBodyArmorVisuals(inst)
+    -- Dummy: verhindert Crash, kann später erweitert werden
+end
+
 local function AddGuletBuilderTag(inst)
     if not inst:HasTag("gulet_builder") then
         inst:AddTag("gulet_builder")
