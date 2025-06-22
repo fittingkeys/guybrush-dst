@@ -435,10 +435,11 @@ local guyhat = AddGuybrushRecipe(
     "guyhat",
     {
         Ingredient("guycoin",         100),
+        Ingredient("malbatross_feather", 3),
         Ingredient("monkey_mediumhat", 1),
     },
     TAB_WAR, 10,
-    "A stylish hat for the greatest pirate of the Caribbean!",
+    "A hat so heroic, it practically sails the boat for you! Tag: –50% boat damage, 100% waterproof. Patch it up with your leather repair kit.",
     "Blue Tricorn"
 )
 STRINGS.CHARACTERS.GENERIC.DESCRIBE.GUYHAT = "A hat that looks good on any pirate."
@@ -506,7 +507,7 @@ STRINGS.CHARACTERS.GENERIC.DESCRIBE.GUYCHEST = "Looks like i need to insert a co
 --------------------------------------------------------------------------
 -- ACTUAL BUMPER NOT THE KIT
 --------------------------------------------------------------------------
-STRINGS.NAMES.BOAT_BUMPER_GUYBRUSH  = "Carnival Bumper"
+STRINGS.NAMES.BOAT_BUMPER_GUYBRUSH  = "Bumper Cars Bumper"
 STRINGS.CHARACTERS.GENERIC.DESCRIBE.BOAT_BUMPER_GUYBRUSH = "Left over from the Carnival of the Damned!"
 
 AddPrefabPostInit("boat_bumper_guybrush", function(inst)

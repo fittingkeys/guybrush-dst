@@ -43,6 +43,13 @@ end
 --------------------------------------------------------------------------
 -- Return from ghost state
 --------------------------------------------------------------------------
+local function ForceGuybrushVisuals(inst)
+    inst.AnimState:SetBuild("guybrush")
+    inst.AnimState:SetBank("wilson")
+    print("[DEBUG] ForceGuybrushVisuals() - Build/Bank set: guybrush/wilson.")
+    RefreshEquippedBodyArmorVisuals(inst)
+end
+
 local function onbecamehuman(inst)
     if inst.components.drunkenness and inst.components.drunkenness.transformed then
         print("[DEBUG] onbecamehuman() - Drunkenness.transformed is true. Assuming drunkenness component handles Gulet visuals.")

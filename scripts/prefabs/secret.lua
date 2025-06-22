@@ -1,7 +1,7 @@
 --------------------------------------------------------------------------------
 -- Zeitkonstanten (in Sekunden)
 --------------------------------------------------------------------------------
-local PERIODIC_INTERVAL = 120      -- Debug: 6s, normal: 60s
+local PERIODIC_INTERVAL = 180      -- Debug: 6s, normal: 60s
 local SOUND_KILL_DELAY = 3        -- Sound wird nach 3s gestoppt
 local TOKEN_INTERVAL = 5          -- Alle 5 Perioden wird der Token-Spruch genutzt
 

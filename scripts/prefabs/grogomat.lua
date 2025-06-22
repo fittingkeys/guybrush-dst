@@ -81,7 +81,7 @@ local function StartGrogomatAutoDispense(inst)
         inst._grogomat_autotask:Cancel()
     end
     local function schedule()
-        local interval = 300 + math.random() * 600 -- 300 bis 900 Sekunden (5-15 Minuten)
+        local interval = 600 + math.random() * 600 -- 600 bis 1200 Sekunden (10-20 Minuten)
         inst._grogomat_autotask = inst:DoTaskInTime(interval, function()
             if inst:IsValid() then
                 -- Gibt Grog aus, als ob jemand eine Münze eingeworfen hätte, aber ohne Spieler

@@ -55,9 +55,9 @@ local function MainFunction()
     inst.AnimState:PlayAnimation("anim")
 
     inst:AddTag("guyhat")
-	inst:AddTag("waterproofer")
-	
-	MakeInventoryFloatable(inst, "small", 0.1, 1.12)
+    inst:AddTag("waterproofer")
+    
+    MakeInventoryFloatable(inst, "small", 0.1, 1.12)
 	
     inst.entity:SetPristine()
 
@@ -68,32 +68,40 @@ local function MainFunction()
     end
     -- Inventory properties
     inst:AddComponent("inspectable")
+    inst.components.inspectable.getspecialdescription = function(inst, viewer)
+        return "On its tag is written: Reduces boat damage by 50%"
+    end
 	-- Allow "trading" the hat - used for giving the hat to Pigmen.
     inst:AddComponent("tradable")
     inst:AddComponent("inventoryitem")
     inst.components.inventoryitem.imagename = "guyhat"
     inst.components.inventoryitem.atlasname = "images/inventoryimages/guyhat.xml"
 
+
+    -- Armor-Komponente für Haltbarkeit und Prozentanzeige
+    inst:AddComponent("armor")
+    inst.components.armor:InitCondition(450, 0.8) -- 600 Haltbarkeit, 80% Block
+
     -- Equippable component
     inst:AddComponent("equippable")
     inst.components.equippable.equipslot = EQUIPSLOTS.HEAD
     inst.components.equippable:SetOnEquip(onequip)
     inst.components.equippable:SetOnUnequip(onunequip)
-	inst:AddComponent("fueled")
-	-- This fuel type will allow us to use Sewing Kit to repair our hat.
-	inst.components.fueled.fueltype = FUELTYPE.USAGE
-	-- Our custom hat should last about 5 days of constant wearing (480 seconds is 1 day in DST).
-	inst.components.fueled:InitializeFuelLevel(480*20)
-	-- What should happen when we reach 0% usage - remove the item.
-	inst.components.fueled:SetDepletedFn(inst.Remove)
+    -- Add repairability via leather_repairkit only (like armor_pirate)
+    inst:AddTag("leather")
+    inst:AddTag("armorrepairable")
+    -- Add repairable component, restrict to leather repair material
+    inst:AddComponent("repairable")
+    inst.components.repairable.repairmaterial = "leather"
+
 
 	inst:AddComponent("waterproofer")
 	-- Our hat shall grant 100% water resistance to the wearer!
     inst.components.waterproofer:SetEffectiveness(1.0)
 
-    inst:AddComponent("insulator")
-    inst.components.insulator:SetSummer()
-    inst.components.insulator:SetInsulation(TUNING.INSULATION_SMALL)
+    -- inst:AddComponent("insulator")
+    -- inst.components.insulator:SetSummer()
+    -- inst.components.insulator:SetInsulation(TUNING.INSULATION_SMALL)
 
     MakeHauntableLaunch(inst)
 
