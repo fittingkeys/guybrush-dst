@@ -150,6 +150,7 @@ local function fn()
     inst:AddTag("structure")
 
     inst.entity:AddTransform()
+    inst.Transform:SetScale(1.5, 1.5, 1.5) -- Makes the monkeygraph 50% larger
     inst.entity:AddAnimState()
     inst.entity:AddMiniMapEntity()
     inst.entity:AddSoundEmitter()

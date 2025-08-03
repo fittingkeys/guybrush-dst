@@ -17,6 +17,21 @@ local prefabs = {}
 -- Declare WORLD_TILES and MARSH_TILES globally (like Wurt)
 local MARSH_TILES = { WORLD_TILES.MARSH }
 local SWAMP_SANITY = 0.05  -- Test value
+local MONKEY_SANITY_DRAIN = -0.15  -- Sanity drain when monkeys are nearby
+
+-- Dialogue lines when near monkeys
+local MONKEY_DIALOGUE = {
+    "I smell bananas... and betrayal.",
+    "Too many furry faces around. I don't like it.",
+    "If one more monkey giggles, I'm gonna snap.",
+    "They're watching. I know they're watching...",
+    "Fluffy on the outside. Menace on the inside.",
+    "I don't trust anything with that much tail.",
+    "Monkeys. Everywhere. This is how nightmares start.",
+    "I'm allergic to monkeys. Symptoms include rage and nausea.",
+    "That monkey blinked. I saw it. It blinked at me.",
+    "They pretend to be cute... but I know what they are."
+}
 
 --------------------------------------------------------------------------
 -- Starting Inventory
@@ -383,6 +398,11 @@ local function master_postinit(inst)
     -- Swamp sanity modifier for Gulet: Arrow in HUD like with flowers
     ----------------------------------------------------------------------
     local SWAMP_SANITY_MODIFIER = "gulet_swamp"
+    
+    ----------------------------------------------------------------------
+    -- Monkey sanity drain modifier: Guybrush hates monkeys!
+    ----------------------------------------------------------------------
+    local MONKEY_SANITY_MODIFIER = "monkey_hate"
     local SWAMP_SANITY_RATE = SWAMP_SANITY -- can be adjusted
     inst:DoPeriodicTask(1, function()
         if inst.components.sanity and inst.isGulet then
@@ -415,6 +435,59 @@ local function master_postinit(inst)
         end
     end)
 
+    ----------------------------------------------------------------------
+    -- Monkey sanity drain effect and dialogue
+    ----------------------------------------------------------------------
+    inst._monkey_dialogue_timer = 0
+    
+    inst:DoPeriodicTask(1, function()
+        if inst.components.sanity then
+            local x, y, z = inst.Transform:GetWorldPosition()
+            local has_monkeys_nearby = false
+            local MONKEY_CHECK_RADIUS = 20 -- Check for monkeys within this radius
+            
+            -- Check for all types of monkeys nearby
+            local ents = TheSim:FindEntities(x, y, z, MONKEY_CHECK_RADIUS, nil, nil, nil)
+            for _, ent in ipairs(ents) do
+                if ent.prefab == "monkey" or ent.prefab == "powder_monkey" or ent.prefab == "prime_mate" then
+                    has_monkeys_nearby = true
+                    break
+                end
+            end
+            
+            if has_monkeys_nearby then
+                if not inst._monkey_sanity_drain then
+                    inst.components.sanity.externalmodifiers:SetModifier(MONKEY_SANITY_MODIFIER, MONKEY_SANITY_DRAIN, "monkey_nearby")
+                    inst._monkey_sanity_drain = true
+                    print("[DEBUG] Monkey nearby - applying sanity drain")
+                end
+                
+                -- Handle monkey dialogue
+                inst._monkey_dialogue_timer = inst._monkey_dialogue_timer + 1
+                
+                -- Say something every 10-20 seconds (randomized)
+                if inst._monkey_dialogue_timer >= math.random(10, 20) then
+                    -- Reset timer
+                    inst._monkey_dialogue_timer = 0
+                    
+                    -- Say a random dialogue line about monkeys
+                    if inst.components.talker then
+                        local dialogue_line = MONKEY_DIALOGUE[math.random(#MONKEY_DIALOGUE)]
+                        inst.components.talker:Say(dialogue_line)
+                        print("[DEBUG] Guybrush says: " .. dialogue_line)
+                    end
+                end
+            else
+                if inst._monkey_sanity_drain then
+                    inst.components.sanity.externalmodifiers:RemoveModifier(MONKEY_SANITY_MODIFIER, "monkey_nearby")
+                    inst._monkey_sanity_drain = nil
+                    inst._monkey_dialogue_timer = 0 -- Reset dialogue timer when no monkeys around
+                    print("[DEBUG] No monkeys nearby - removing sanity drain")
+                end
+            end
+        end
+    end)
+    
     -- Other listeners
     ----------------------------------------------------------------------
     inst:ListenForEvent("killed", OnKill)

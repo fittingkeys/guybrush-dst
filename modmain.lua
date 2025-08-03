@@ -359,9 +359,9 @@ STRINGS.CHARACTERS.GENERIC.DESCRIBE.GROGOMAT = "A vending machine full of grog."
 local monkeygraph = AddGuybrushRecipe(
     "monkeygraph",
     {
-        Ingredient("nightmarefuel",  2),
+        Ingredient("wagpunk_bits",  1),
         Ingredient("palmcone_scale", 6),
-        Ingredient("gears",          1),
+        Ingredient("feather_crow", 4),
     },
     TAB_WAR, 5,
     "A phonograph with a monkey head in the middle?",
